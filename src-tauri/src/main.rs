@@ -1,4 +1,4 @@
-use tauri::{generate_handler, SystemTray, SystemTrayMenu, SystemTrayMenuItem};
+use tauri::{generate_handler, SystemTray, SystemTrayMenu, CustomMenuItem, SystemTrayEvent};
 
 #[tauri::command]
 async fn fetch_routes() -> Result<Vec<Route>, String> {
@@ -47,14 +47,24 @@ struct MenubarRoutes {
 }
 
 fn main() {
+    let quit = CustomMenuItem::new("quit".to_string(), "Quit");
     let tray_menu = SystemTrayMenu::new()
-        .add_item(SystemTrayMenuItem::Separator)
-        .add_item(SystemTrayMenuItem::Quit);
+        .add_item(quit);
 
     let system_tray = SystemTray::new().with_menu(tray_menu);
 
     tauri::Builder::default()
         .system_tray(system_tray)
+        .on_system_tray_event(|app, event| {
+            match event {
+                SystemTrayEvent::MenuItemClick { id, .. } => {
+                    if id == "quit" {
+                        std::process::exit(0);
+                    }
+                }
+                _ => {}
+            }
+        })
         .invoke_handler(generate_handler![fetch_routes, open_url])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

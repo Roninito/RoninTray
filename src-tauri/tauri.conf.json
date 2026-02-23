@@ -3,9 +3,13 @@
     "beforeBuildCommand": "npm run build",
     "beforeDevCommand": "npm run dev",
     "devPath": "http://localhost:5173",
-    "frontendDist": "../dist"
+    "distDir": "../dist"
   },
-  "app": {
+  "package": {
+    "productName": "RoninTray",
+    "version": "0.1.0"
+  },
+  "tauri": {
     "windows": [
       {
         "title": "Ronin Tray",
@@ -21,22 +25,16 @@
     ],
     "security": {
       "csp": null
-    }
-  },
-  "package": {
-    "productName": "RoninTray",
-    "version": "0.1.0"
-  },
-  "tauri": {
+    },
+    "systemTray": {
+      "iconPath": "icons/icon.png",
+      "iconAsTemplate": true
+    },
     "allowlist": {
       "all": false,
       "shell": {
         "all": false,
         "open": true
-      },
-      "http": {
-        "all": false,
-        "scope": ["http://localhost:*"]
       }
     },
     "bundle": {
@@ -50,9 +48,8 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ]
-    },
-    "updater": {
-      "active": false
     }
   }
 }
+
+
