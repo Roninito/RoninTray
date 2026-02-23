@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "tauri dev",
+    "build-frontend": "vite build",
     "build": "tauri build",
     "build-mac": "tauri build --target universal-apple-darwin",
     "build-windows": "tauri build --target x86_64-pc-windows-msvc",
@@ -15,7 +16,7 @@
   },
   "devDependencies": {
     "@tauri-apps/api": "^1.5.3",
-    "@tauri-apps/cli": "^1.5.10",
+    "@tauri-apps/cli": "^2.10.0",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react": "^4.2.1",
