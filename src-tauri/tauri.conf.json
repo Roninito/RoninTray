@@ -13,10 +13,10 @@
     "windows": [
       {
         "title": "Ronin Tray",
-        "width": 400,
+        "width": 380,
         "height": 600,
-        "minWidth": 300,
-        "minHeight": 400,
+        "minWidth": 320,
+        "minHeight": 480,
         "decorations": false,
         "transparent": true,
         "alwaysOnTop": true,
@@ -35,6 +35,11 @@
       "shell": {
         "all": false,
         "open": true
+      },
+      "window": {
+        "all": false,
+        "hide": true,
+        "show": true
       }
     },
     "bundle": {
